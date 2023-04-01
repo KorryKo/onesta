@@ -1,13 +1,11 @@
 import Link from "next/link";
+import { MenuItems } from "@/global/types";
 
-const LeftMenu: React.FC = () => {
-  const menuItems = [
-    { title: "Frutas", path: "/" },
-    { title: "Cosechas", path: "/cosechas" },
-    { title: "Agricultores", path: "/gricultores" },
-    { title: "Clientes", path: "/clientes" },
-  ];
+interface LeftMenuProps {
+  menuItems: MenuItems[];
+}
 
+const LeftMenu: React.FC<LeftMenuProps> = ({ menuItems }) => {
   return (
     <nav className="w-64 shadow  min-h-full mt-0">
       <ul className="pt-8">
