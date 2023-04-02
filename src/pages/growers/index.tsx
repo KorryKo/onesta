@@ -1,11 +1,11 @@
 import Layout from "@/components/layout";
 
-const Home: React.FC = () => {
+const Growers: React.FC = () => {
   return (
     <Layout>
-      <h1>home page</h1>
+      <h1>Growers</h1>
     </Layout>
   );
 };
 
-export default Home;
+export default Growers;
