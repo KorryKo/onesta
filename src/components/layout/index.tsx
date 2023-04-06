@@ -10,7 +10,7 @@ const Layout: React.FC<any> = ({ children }: Props) => {
   return (
     <div className="h-screen">
       <Header />
-      <div className="h-screen" style={{ display: "flex" }}>
+      <div className="h-screen bg-lightGray1" style={{ display: "flex" }}>
         <LeftMenu menuItems={MENU_ITEMS} />
         {children}
       </div>

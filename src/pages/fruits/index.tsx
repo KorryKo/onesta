@@ -2,6 +2,7 @@ import Layout from "@/components/layout";
 import { GetServerSideProps } from "next";
 import Breadcrumbs from "@/components/breadcrumbs";
 import { MenuItems } from "@/global/types";
+import DataTable from "@/components/data-table";
 
 interface CommodityPageProps {
   commodities: Commodity[];
@@ -31,20 +32,19 @@ export const getServerSideProps: GetServerSideProps<
   return { props: { commodities: data.commodities } };
 };
 
-
-
 const Fruits: React.FC<CommodityPageProps> = ({ commodities }) => {
   const fruitsBradcrumbs: MenuItems[] = [
     { title: "Inicio", path: "/" },
     { title: "Frutas", path: "/fruits" },
   ];
 
-  const tableRows = Object.keys(commodities[0]);
   return (
     <Layout>
-      <div>
+      <div className="w-4/5 mx-auto">
         <Breadcrumbs items={fruitsBradcrumbs} />
-        <h1>fruits</h1>
+        <h1 className="font-normal text-2xl my-6" >fruits</h1>
+        <hr className="border border-lightGray2" />
+        <DataTable data={commodities} />
       </div>
     </Layout>
   );

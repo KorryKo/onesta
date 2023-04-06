@@ -11,7 +11,7 @@ interface BreadcrumbsProps {
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
   return (
-    <nav className="px-4 py-2">
+    <nav className="my-10">
       <ol className="flex">
         {items.map((item, index) => (
           <div className="flex" key={item.path}>
