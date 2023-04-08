@@ -69,6 +69,7 @@ const Harvests: React.FC<HarvestsPageProps> = ({ harvests }) => {
   return (
     <Layout>
       <Breadcrumbs items={harvestsBradcrumbs} />
+      <a href="/harvests/add-harvest" style={{backgroundColor:"blue", color:"white" , padding:"16px"}}>agregar cosecha</a>
       <h1 className="font-normal text-2xl my-6">harvests</h1>
       <hr className="border border-lightGray2" />
       <DataTable data={harvests} />
