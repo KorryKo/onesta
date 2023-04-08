@@ -17,7 +17,7 @@ const DataTable: React.FC<Props> = ({ data }) => {
   };
   
   return (
-    <div className="mt-9 bg-white p-5">
+    <div className="mt-9 bg-white p-5 min-w-full overflow-x-auto">
       <table className="min-w-full">
         <thead className={"bg-primaryLight3 "}>
           <tr className={"divide-y divide-x divide-white"}>

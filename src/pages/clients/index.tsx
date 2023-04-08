@@ -10,10 +10,8 @@ const Clients: React.FC = () => {
 
   return (
     <Layout>
-      <div>
-        <Breadcrumbs items={clientsBradcrumbs}/>
+      <Breadcrumbs items={clientsBradcrumbs} />
       <h1>Clients</h1>
-      </div>
     </Layout>
   );
 };

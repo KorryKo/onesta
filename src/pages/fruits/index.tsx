@@ -40,12 +40,10 @@ const Fruits: React.FC<CommodityPageProps> = ({ commodities }) => {
 
   return (
     <Layout>
-      <div className="w-4/5 mx-auto">
-        <Breadcrumbs items={fruitsBradcrumbs} />
-        <h1 className="font-normal text-2xl my-6" >fruits</h1>
-        <hr className="border border-lightGray2" />
-        <DataTable data={commodities} />
-      </div>
+      <Breadcrumbs items={fruitsBradcrumbs} />
+      <h1 className="font-normal text-2xl my-6">fruits</h1>
+      <hr className="border border-lightGray2" />
+      <DataTable data={commodities} />
     </Layout>
   );
 };
