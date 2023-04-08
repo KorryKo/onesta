@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Header: React.FC = () => {
   return (
-    <nav className="bg-primaryLight3">
+    <nav className="sticky top-0 bg-primaryLight3">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex h-16">
           <div className="flex items-center">

@@ -7,7 +7,7 @@ interface LeftMenuProps {
 
 const LeftMenu: React.FC<LeftMenuProps> = ({ menuItems }) => {
   return (
-    <nav className="w-64 shadow  min-h-full mt-0">
+    <nav className="lg:w-64 shadow sticky top-16 left-menu-height">
       <ul className="pt-8">
         {menuItems.map((menuItem) => (
           <li key={menuItem.path}>

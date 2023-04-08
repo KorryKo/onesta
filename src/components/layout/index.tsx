@@ -8,13 +8,13 @@ interface Props {
 
 const Layout: React.FC<any> = ({ children }: Props) => {
   return (
-    <div className="h-screen">
+    <div>
       <Header />
-      <div className="h-screen" style={{ display: "flex" }}>
-        <LeftMenu menuItems={MENU_ITEMS} />
-        <div className="w-4/5  mx-auto">
-            {children}
+      <div style={{ display: "flex" }}>
+        <div>
+          <LeftMenu menuItems={MENU_ITEMS} />
         </div>
+        <div className="w-4/5  mx-auto">{children}</div>
       </div>
     </div>
   );
