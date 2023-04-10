@@ -3,6 +3,7 @@ import DataTable from "@/components/data-table";
 import Layout from "@/components/layout";
 import { MenuItems } from "@/global/types";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface Harvest {
   id: string;
@@ -74,13 +75,28 @@ const Harvests: React.FC = () => {
   return (
     <Layout>
       <Breadcrumbs items={harvestsBradcrumbs} />
-      <a
-        href="/harvests/add-harvest"
-        style={{ backgroundColor: "blue", color: "white", padding: "16px" }}
-      >
-        agregar cosecha
-      </a>
-      <h1 className="font-normal text-2xl my-6">harvests</h1>
+      <div className="my-6 flex justify-between items-baseline">
+        <h1 className="font-normal text-2xl">harvests</h1>
+        <Link href={"/harvests/add-harvest"}>
+          <button className="bg-primary text-white p-4 self-end rounded-full flex"> 
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+            <span className="ml-2">Agregar cosecha</span>
+          </button>
+        </Link>
+      </div>
       <hr className="border border-lightGray2" />
       <DataTable
         data={harvestsData}
