@@ -1,10 +1,14 @@
 import React from "react";
+import Pagination from "../pagination";
 
 interface Props {
   data: any[];
+  page: number;
+  setPage: (page: number) => void;
+  count: number;
 }
 
-const DataTable: React.FC<Props> = ({ data }) => {
+const DataTable: React.FC<Props> = ({ data, page, setPage, count }) => {
   if (!data || data.length === 0) {
     return null;
   }
@@ -15,9 +19,9 @@ const DataTable: React.FC<Props> = ({ data }) => {
       index === keys.length - 1 ? "rounded-r-md" : ""
     } ${index !== 0 && index !== keys.length - 1 ? "rounded-none" : ""}`;
   };
-  
+
   return (
-    <div className="mt-9 bg-white p-5 min-w-full overflow-x-auto">
+    <div className="mt-9 bg-white p-5 min-w-full overflow-x-auto flex flex-col">
       <table className="min-w-full">
         <thead className={"bg-primaryLight3 "}>
           <tr className={"divide-y divide-x divide-white"}>
@@ -93,6 +97,7 @@ const DataTable: React.FC<Props> = ({ data }) => {
           ))}
         </tbody>
       </table>
+      <Pagination page={page} setPage={setPage} count={count} />
     </div>
   );
 };
