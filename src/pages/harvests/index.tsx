@@ -76,7 +76,7 @@ const Harvests: React.FC = () => {
     <Layout>
       <Breadcrumbs items={harvestsBradcrumbs} />
       <div className="my-6 flex justify-between items-baseline">
-        <h1 className="font-normal text-2xl">harvests</h1>
+        <h1 className="font-normal text-2xl">Cosechas</h1>
         <Link href={"/harvests/add-harvest"}>
           <button className="bg-primary text-white py-2.5 px-6 self-end rounded-full flex"> 
             <svg

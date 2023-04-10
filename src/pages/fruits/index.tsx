@@ -46,7 +46,7 @@ const Fruits: React.FC = () => {
   return (
     <Layout>
       <Breadcrumbs items={fruitsBradcrumbs} />
-      <h1 className="font-normal text-2xl my-6">fruits</h1>
+      <h1 className="font-normal text-2xl my-6">Frutas</h1>
       <hr className="border border-lightGray2" />
       <DataTable
         data={commoditiesData}

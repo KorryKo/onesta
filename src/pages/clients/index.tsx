@@ -41,7 +41,7 @@ const Clients: React.FC = () => {
   return (
     <Layout>
       <Breadcrumbs items={clientsBradcrumbs} />
-      <h1 className="font-normal text-2xl my-6">Clients</h1>
+      <h1 className="font-normal text-2xl my-6">Clientes</h1>
       <hr className="border border-lightGray2" />
       <DataTable
         data={clientsData}
