@@ -1,4 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  Commodity,
+  DataObject,
+  Grower,
+  Client,
+  Farm,
+  Variety,
+} from "@/global/types";
+
+export const fetchHarvestFormData = async () => {
+  const fruitsData = await fetch(
+    "https://testapi.onesta.farm/v1/commodities"
+  ).then((res) => res.json());
+  const growersData = await fetch(
+    "https://testapi.onesta.farm/v1/growers"
+  ).then((res) => res.json());
+  const clientsData = await fetch(
+    "https://testapi.onesta.farm/v1/clients"
+  ).then((res) => res.json());
+
+  return {
+    fruits: fruitsData.commodities,
+    growers: growersData.growers,
+    clients: clientsData.clients,
+  };
+};
 
 const AddHarvestForm = () => {
   const [growerId, setGrowerId] = useState<string>("");
@@ -7,6 +33,55 @@ const AddHarvestForm = () => {
   const [commodityId, setCommodityId] = useState<string>("");
   const [varietyId, setVarietyId] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
+
+  const [fruitData, setFruitData] = useState<Commodity[]>([]);
+  const [growerData, setGrowerData] = useState<Grower[]>([]);
+  const [clientData, setClientData] = useState<Client[]>([]);
+  const [availableFarms, setAvailableFarms] = useState<Farm[]>([]);
+  const [availableFruitVarieties, setAvailableFruitVarieties] = useState<
+    Variety[]
+  >([]);
+
+  const init = async () => {
+    const { fruits, growers, clients } = await fetchHarvestFormData();
+    setFruitData(fruits);
+    setGrowerData(growers);
+    setClientData(clients);
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
+
+  const handleGrowerChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    const selectedData: any | undefined = growerData.find(
+      (item: any) => item.id === event.target.value
+    );
+    setGrowerId(event.target.value);
+    setAvailableFarms(selectedData["farms"]);
+  };
+
+  const handleFruitChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    const selectedData: Commodity | undefined = fruitData?.find(
+      (item: any) => item.id === event.target.value
+    );
+    setCommodityId(event.target.value);
+    if (selectedData) {
+      setAvailableFruitVarieties(selectedData["varieties"]);
+    }
+  };
+
+  const createOptions = (data: DataObject[]) => {
+    return data?.map((value) => (
+      <option key={value.id} value={value.id}>
+        {value.name}
+      </option>
+    ));
+  };
 
   const postHarvest = (e: any) => {
     e.preventDefault();
@@ -45,19 +120,14 @@ const AddHarvestForm = () => {
                 Agricultor
               </label>
               <select
-                onChange={(e) => setGrowerId(e.target.value)}
+                onChange={handleGrowerChange}
                 defaultValue=""
                 className="border border-lightGray2 py-2.5 w-full"
                 name="grower"
                 id="grower"
               >
                 <option value="" hidden disabled></option>
-                <option value="425cee53-a3fe-4fb3-91b6-bf774ff69020">
-                  Volvo
-                </option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                {createOptions(growerData)}
               </select>
             </div>
             <div className="flex flex-col  w-1/2">
@@ -72,12 +142,7 @@ const AddHarvestForm = () => {
                 id="field"
               >
                 <option value="" hidden disabled></option>
-                <option value="e998ba72-3219-4d10-8627-3e138d674125">
-                  Volvo
-                </option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                {createOptions(availableFarms)}
               </select>
             </div>
           </div>
@@ -87,19 +152,14 @@ const AddHarvestForm = () => {
                 Fruta
               </label>
               <select
-                onChange={(e) => setCommodityId(e.target.value)}
+                onChange={handleFruitChange}
                 defaultValue=""
                 className="border  border-lightGray2 py-2.5 w-full"
                 name="fruit"
                 id="fruit"
               >
                 <option value="" hidden disabled></option>
-                <option value="00ea5b4d-078f-430a-bf3c-497413ed4d86">
-                  Volvo
-                </option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                {createOptions(fruitData)}
               </select>
             </div>
             <div className="flex flex-col w-1/2">
@@ -114,12 +174,7 @@ const AddHarvestForm = () => {
                 id="variety"
               >
                 <option value="" hidden disabled></option>
-                <option value="1d6fd68c-7d49-4266-b31c-a3c2f25cd5c5">
-                  Volvo
-                </option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                {createOptions(availableFruitVarieties)}
               </select>
             </div>
           </div>
@@ -133,12 +188,7 @@ const AddHarvestForm = () => {
               id="client"
             >
               <option value="" hidden disabled></option>
-              <option value="00de2864-472e-4f19-8ffe-e289964b108c">
-                Volvo
-              </option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
+              {createOptions(clientData)}
             </select>
           </div>
           {error && <p className="text-redDark">Invalid data</p>}

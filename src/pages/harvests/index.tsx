@@ -1,54 +1,9 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import DataTable from "@/components/data-table";
 import Layout from "@/components/layout";
-import { MenuItems } from "@/global/types";
+import { MenuItems, HarvestsData, Harvest } from "@/global/types";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-
-interface Harvest {
-  id: string;
-  grower: Grower;
-  farm: Farm;
-  client: Client;
-  commodity: Comodity;
-  variety: Variety;
-  createdAt: string;
-}
-
-interface Grower {
-  id: string;
-  name: string;
-  lastName: string;
-  email: string;
-}
-
-interface Farm {
-  id: string;
-  name: string;
-  address: string;
-}
-
-interface Client {
-  id: string;
-  name: string;
-  lastName: string;
-  email: string;
-}
-
-interface Comodity {
-  id: string;
-  name: string;
-}
-
-interface Variety {
-  id: string;
-  name: string;
-}
-
-interface HarvestsData {
-  harvests: Harvest[];
-  count: number;
-}
 
 const Harvests: React.FC = () => {
   const [page, setPage] = useState(1);
@@ -78,7 +33,7 @@ const Harvests: React.FC = () => {
       <div className="my-6 flex justify-between items-baseline">
         <h1 className="font-normal text-2xl">Cosechas</h1>
         <Link href={"/harvests/add-harvest"}>
-          <button className="bg-primary text-white py-2.5 px-6 self-end rounded-full flex"> 
+          <button className="bg-primary text-white py-2.5 px-6 self-end rounded-full flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

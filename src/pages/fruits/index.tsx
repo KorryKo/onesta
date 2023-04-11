@@ -1,24 +1,8 @@
 import Layout from "@/components/layout";
 import Breadcrumbs from "@/components/breadcrumbs";
-import { MenuItems } from "@/global/types";
+import { MenuItems, CommodityData, Commodity } from "@/global/types";
 import DataTable from "@/components/data-table";
 import { useEffect, useState } from "react";
-
-interface Commodity {
-  id: string;
-  name: string;
-  varieties: Variety[];
-}
-
-interface Variety {
-  id: string;
-  name: string;
-}
-
-interface CommodityData {
-  commodities: Commodity[];
-  count: number;
-}
 
 const Fruits: React.FC = () => {
   const [page, setPage] = useState(1);

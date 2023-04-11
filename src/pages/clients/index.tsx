@@ -1,20 +1,8 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import DataTable from "@/components/data-table";
 import Layout from "@/components/layout";
-import { MenuItems } from "@/global/types";
+import { MenuItems, Client, ClientsData } from "@/global/types";
 import { useEffect, useState } from "react";
-
-interface Client {
-  id: string;
-  name: string;
-  lastName: string;
-  email: string;
-}
-
-interface ClientsData {
-  clients: Client[];
-  count: number;
-}
 
 const Clients: React.FC = () => {
   const [page, setPage] = useState(1);

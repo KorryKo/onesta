@@ -1,27 +1,8 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import DataTable from "@/components/data-table";
 import Layout from "@/components/layout";
-import { MenuItems } from "@/global/types";
+import { MenuItems, GrowersData, Grower } from "@/global/types";
 import { useEffect, useState } from "react";
-
-interface Grower {
-  id: string;
-  name: string;
-  lastName: string;
-  email: string;
-  farms: Farms[];
-}
-
-interface Farms {
-  id: string;
-  name: string;
-  address: string;
-}
-
-interface GrowersData {
-  growers: Grower[];
-  count: number;
-}
 
 const Growers: React.FC = () => {
   const [page, setPage] = useState(1);
